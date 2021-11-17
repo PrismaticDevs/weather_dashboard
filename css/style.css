@@ -1,0 +1,60 @@
+body {
+    position: relative;
+}
+
+button {
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    font-family: 'Inconsolata', monospace;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    padding: 2%;
+}
+
+.cities {
+    display: flex;
+    flex-direction: column;
+    width: 19%;
+}
+
+.city {
+    background-color: rgb(16, 35, 70);
+    margin: 3%;
+    color: white;
+}
+
+.city:hover {
+    background-color: rgb(53, 95, 175);
+}
+
+.submit:hover {
+    background-color: rgb(35, 134, 81);
+}
+
+.submit {
+    background-color: rgb(16, 70, 40);
+    color: white;
+    width: 19%;
+    padding: 1%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.title {
+    margin-top: 3%;
+    margin-bottom: 0;
+}
+
+.banner {
+    font-size: 2em;
+    text-align: center;
+    background-color: rgb(21, 65, 146);
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+    color: white;
+}

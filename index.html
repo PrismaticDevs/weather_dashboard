@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colorado Springs Forecast</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200&family=Merriweather+Sans&family=Roboto:ital,wght@1,300;1,900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="banner">
+        Weather Dashboard
+    </div>
+    <div class="container">
+        <form id="form">
+            <h1 class="title">Search for a City</h1>
+            <input type="text" name="city" id="city" placehol> <br>
+            <button class="submit" id="submit" onclick="weatherData()">Submit</button>
+            <div class="cities"></div>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="./js/script.js"></script>
+</body>
+
+</html>
