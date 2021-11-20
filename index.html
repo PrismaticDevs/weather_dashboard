@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colorado Springs Forecast</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <title>Weather Forecasts</title>
     <link rel="stylesheet" href="./css/style.css">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,12 +20,23 @@
         Weather Dashboard
     </div>
     <div class="container">
-        <form id="form">
-            <h1 class="title">Search for a City</h1>
-            <input type="text" name="city" id="city" placehol> <br>
-            <button class="submit" id="submit" onclick="weatherData()">Submit</button>
-            <div class="cities"></div>
-        </form>
+        <table>
+            <tr>
+                <td class="fixed">
+                    <form id="form">
+                        <h1 class="title">Search for a City</h1>
+                        <input type="text" name="city" id="city" placeholder="Select a City"> <br>
+                        <button class="submit" id="submit" onclick="weatherData()">Submit</button>
+                    </form>
+                    <div id="history">
+                        <h2>Search History</h2>
+                    </div>
+                </td>
+                <td>
+                    <div id="results"></div>
+                </td>
+            </tr>
+        </table>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="./js/script.js"></script>
