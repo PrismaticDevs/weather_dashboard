@@ -46,5 +46,3 @@ form.submit(function(e) {
     }
     historyEl.text(history);
 });
-
-// Figuring this out
