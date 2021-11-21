@@ -4,7 +4,7 @@ const form = $('#form');
 const submitBtn = $('#submit');
 const cityElement = $('#city');
 const results = $('#results');
-const historyEl = $('#history');
+const historyEl = $('#historyItems');
 const history = [];
 
 $('.city').click(function(e) {
@@ -12,6 +12,7 @@ $('.city').click(function(e) {
 });
 
 let city;
+let searched = false;
 // API Key
 const apiKey = '229984962887c500e20428e36f61f8eb';
 // Fetch Async Await
@@ -29,11 +30,19 @@ async function weatherData() {
         .catch(err => {
             console.error(err);
         });
+    searched = true;
+    console.log(searched);
 }
 
 form.submit(function(e) {
     e.preventDefault();
     weatherData();
-    history.push(city);
-    results.text(history);
+    if (history.includes(city)) {
+        console.log('dalready searched ');
+        return;
+    } else {
+        console.log('push to history');
+        history.push(city);
+    }
+    historyEl.text(history);
 });
