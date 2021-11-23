@@ -1,62 +1,11 @@
-body {
-    position: relative;
-    background-color: rgb(243, 243, 243);
-}
+/* HTML Elements */
 
-button {
-    border-radius: 5px;
-    outline: none;
-    border: none;
-    box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.5);
-    cursor: pointer;
+body {
     font-family: 'Inconsolata', monospace;
     font-family: 'Merriweather Sans', sans-serif;
     font-family: 'Roboto', sans-serif;
-    padding: 2%;
-}
-
-.cities {
-    display: flex;
-    flex-direction: column;
-    width: 19%;
-}
-
-.city {
-    background-color: rgb(16, 35, 70);
-    margin: 3%;
-    color: white;
-}
-
-.city:hover {
-    background-color: rgb(53, 95, 175);
-}
-
-.submit:hover {
-    background-color: rgb(35, 134, 81);
-}
-
-.submit {
-    background-color: rgb(16, 70, 40);
-    color: white;
-    width: 100%;
-    padding: 1%;
-    margin-top: 1%;
-    margin-bottom: 1%;
-}
-
-.banner {
-    font-size: 2em;
-    text-align: center;
-    background-image: linear-gradient(to top, rgb(21, 65, 146), rgb(109, 136, 196));
-    top: 0;
-    left: 0;
-    position: fixed;
-    width: 100%;
-    color: white;
-}
-
-.container {
-    margin-top: 2.5%;
+    margin: 0;
+    padding: 0;
 }
 
 h1,
@@ -65,55 +14,68 @@ h2 {
     padding: 0;
 }
 
-#form {
-    background-color: white;
-    border-radius: 5px;
+button {
     padding: 3%;
-    width: 20%;
+    outline: none;
+    border: none;
     box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.5);
-    margin-bottom: 3%;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.75;
+}
+
+form {
     display: flex;
     flex-direction: column;
-    position: fixed;
-}
-
-#history {
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.5);
-    padding: 3%;
-    position: fixed;
-    margin-top: 15%;
-}
-
-#form input {
-    width: 95%;
-}
-
-#results {
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.5);
-    padding: 3%;
-    margin-left: 5%;
-    display: flex;
-    flex-wrap: wrap;
-    width: fit-content;
-    margin-left: 30%;
-}
-
-.fixed {
-    position: fixed;
+    justify-content: center;
 }
 
 table {
-    margin: 0;
-    padding: 0;
+    border-collapse: separate;
+    border-spacing: 1em 1em;
 }
 
-@media only screen and (max-width: 600px) {
-    .container {
-        margin-top: 10%;
-        margin-left: 5%;
-    }
+td {
+    vertical-align: top;
+    padding: 2em;
+    border-radius: 5px;
+}
+
+
+/* Custom IDs */
+
+#form {
+    border-bottom: 1px solid black;
+    padding-bottom: 5%;
+}
+
+#results {
+    margin-left: 15%;
+}
+
+#history {
+    margin-top: 2em;
+}
+
+
+/* Custom Classes */
+
+.submit {
+    background-color: green;
+    color: white;
+}
+
+.banner {
+    text-align: center;
+    font-size: 2em;
+    font-weight: 600;
+    color: brown;
+    background-color: lightblue;
+    height: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

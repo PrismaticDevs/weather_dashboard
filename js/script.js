@@ -6,13 +6,13 @@ const cityElement = $('#city');
 const results = $('#results');
 const historyEl = $('#historyItems');
 const history = [];
+const div = $('<div class="container">');
 
 $('.city').click(function(e) {
     cityElement.val($(e.target).text());
 });
 
 let city;
-let searched = false;
 // API Key
 const apiKey = '229984962887c500e20428e36f61f8eb';
 // Fetch Async Await
@@ -24,25 +24,22 @@ async function weatherData() {
             return response.json();
         })
         .then(data => {
-            console.log(data.weather);
-            results.text(JSON.stringify(data));
+            if (data) {
+                console.log(data);
+                let sky = JSON.stringify(data.weather[0].description)
+                let cityName = JSON.stringify(data.name)
+                results.append(div).html(cityName);
+                city = city.charAt(0).toUpperCase() + city.slice(1);;
+                if (history.includes(city) === false) history.push(city);;
+                historyEl.text(history);
+            }
         })
-        .catch(err => {
-            console.error(err);
+        .catch((error) => {
+            console.error(error);
         });
-    searched = true;
-    console.log(searched);
 }
 
 form.submit(function(e) {
     e.preventDefault();
     weatherData();
-    if (history.includes(city)) {
-        console.log('dalready searched ');
-        return;
-    } else {
-        console.log('push to history');
-        history.push(city);
-    }
-    historyEl.text(history);
 });
