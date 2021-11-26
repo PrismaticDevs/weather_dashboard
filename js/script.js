@@ -5,16 +5,39 @@ const submitBtn = $('#submit');
 const cityElement = $('#city');
 const results = $('#results');
 const historyEl = $('#historyItems');
-const history = [];
 const div = $('<div class="container">');
+let history = getStorage();
+makeHistoryButtons();
+
+function getStorage() {
+    let items = JSON.parse(localStorage.getItem('history'));
+    if (!items) {
+        items = [];
+    }
+    return items;
+}
+
+historyEl.text(history);
+
+
+console.log(history);
 
 $('.city').click(function(e) {
     cityElement.val($(e.target).text());
 });
 
 let city;
-// API Key
 const apiKey = '229984962887c500e20428e36f61f8eb';
+
+function makeHistoryButtons() {
+    historyEl.empty();
+    history.forEach((city) => {
+        const cityButton = $('<button>');
+        cityButton.text(city)
+        historyEl.append(cityButton);
+    });
+}
+
 // Fetch Async Await
 async function weatherData() {
     city = cityElement.val();
@@ -24,15 +47,11 @@ async function weatherData() {
             return response.json();
         })
         .then(data => {
-            if (data) {
-                console.log(data);
-                let sky = JSON.stringify(data.weather[0].description)
-                let cityName = JSON.stringify(data.name)
-                results.append(div).html(cityName);
-                city = city.charAt(0).toUpperCase() + city.slice(1);;
-                if (history.includes(city) === false) history.push(city);;
-                historyEl.text(history);
-            }
+            console.log(data);
+            results.text(data.name);
+            history.push(city);
+            localStorage.setItem('history', JSON.stringify(history));
+            makeHistoryButtons();
         })
         .catch((error) => {
             console.error(error);

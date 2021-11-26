@@ -79,3 +79,10 @@ td {
     align-items: center;
     justify-content: center;
 }
+
+.historyItem {
+    padding: 2%;
+    background-color: gainsboro;
+    margin: 1px;
+    border-radius: 5px;
+}
