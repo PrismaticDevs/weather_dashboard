@@ -40,7 +40,6 @@ table {
 
 td {
     vertical-align: top;
-    padding: 2em;
     border-radius: 5px;
 }
 
@@ -56,10 +55,6 @@ input[type=text] {
 #form {
     border-bottom: 1px solid #373737;
     padding-bottom: 8%;
-}
-
-#results {
-    margin-left: 15%;
 }
 
 #history {
@@ -97,4 +92,11 @@ input[type=text] {
     width: 100%;
     margin-bottom: 3%;
     background-color: #b7b7b7;
+}
+
+.day {
+    width: 75vw;
+    height: 30vh;
+    padding: 1%;
+    border: 1px solid black;
 }

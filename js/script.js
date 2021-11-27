@@ -3,7 +3,7 @@ const cityContainer = $('.cities');
 const form = $('#form');
 const submitBtn = $('#submit');
 const cityElement = $('#city');
-const results = $('#results');
+const day = $('.day');
 const historyEl = $('#historyItems');
 const div = $('<div class="container">');
 let history = getStorage();
@@ -31,6 +31,17 @@ function makeHistoryButtons() {
         const cityButton = $('<button class="historyBtn">');
         cityButton.text(city)
         historyEl.append(cityButton);
+        cityButton.click(function(e) {
+            let city = cityButton.text();
+            let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+            fetch(url)
+                .then(response => {
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data);
+                })
+        })
     });
 }
 makeHistoryButtons();
@@ -44,14 +55,18 @@ async function weatherData() {
             return response.json();
         })
         .then(data => {
-            console.log(data);
-            results.text(data.name);
+            day.append(data.name);
             city = city.toLowerCase();
             city = city.charAt(0).toUpperCase() + city.slice(1);
+            if (city === '') {
+                return
+            }
             if (history.includes(city) === false) {
                 history.push(city);
                 localStorage.setItem('history', JSON.stringify(history));
             };
+            results.append();
+            console.log(data);
             makeHistoryButtons();
         })
         .catch((error) => {
