@@ -48,6 +48,19 @@ makeHistoryButtons();
 
 // Fetch Async Await
 async function weatherData() {
+    let d = new Date;
+    const weekday = new Array(7);
+    weekday[0] = "Sunday";
+    weekday[1] = "Monday";
+    weekday[2] = "Tuesday";
+    weekday[3] = "Wednesday";
+    weekday[4] = "Thursday";
+    weekday[5] = "Friday";
+    weekday[6] = "Saturday";
+    let month = d.getMonth() + 1;
+    let x = d.getDate();
+    let year = d.getFullYear();
+    let date = '(' + month + '/' + x + '/' + year + ')';
     city = cityElement.val();
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
     await fetch(url)
@@ -55,7 +68,7 @@ async function weatherData() {
             return response.json();
         })
         .then(data => {
-            day.append(data.name);
+            //day.append(data.name);
             city = city.toLowerCase();
             city = city.charAt(0).toUpperCase() + city.slice(1);
             if (city === '') {
@@ -66,6 +79,7 @@ async function weatherData() {
                 localStorage.setItem('history', JSON.stringify(history));
             };
             results.append();
+            day.text(city + ' ' + date).addClass('current');
             console.log(data);
             makeHistoryButtons();
         })

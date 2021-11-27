@@ -100,3 +100,8 @@ input[type=text] {
     padding: 1%;
     border: 1px solid black;
 }
+
+.current {
+    font-size: 1.5em;
+    font-weight: 600;
+}
