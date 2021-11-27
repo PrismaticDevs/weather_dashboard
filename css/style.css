@@ -44,12 +44,18 @@ td {
     border-radius: 5px;
 }
 
+input[type=text] {
+    padding: 2%;
+    border: solid 1px #c5c5c5;
+    border-radius: 5px;
+}
+
 
 /* Custom IDs */
 
 #form {
-    border-bottom: 1px solid black;
-    padding-bottom: 5%;
+    border-bottom: 1px solid #373737;
+    padding-bottom: 8%;
 }
 
 #results {
@@ -64,7 +70,7 @@ td {
 /* Custom Classes */
 
 .submit {
-    background-color: green;
+    background-color: #5ba1e9;
     color: white;
 }
 
@@ -72,8 +78,8 @@ td {
     text-align: center;
     font-size: 2em;
     font-weight: 600;
-    color: brown;
-    background-color: lightblue;
+    color: white;
+    background-image: linear-gradient(to right, rgba(59, 109, 299), rgba(36, 4, 85));
     height: 2em;
     display: flex;
     align-items: center;
@@ -85,4 +91,10 @@ td {
     background-color: gainsboro;
     margin: 1px;
     border-radius: 5px;
+}
+
+.historyBtn {
+    width: 100%;
+    margin-bottom: 3%;
+    background-color: #b7b7b7;
 }
