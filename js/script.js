@@ -56,7 +56,6 @@ function makeHistoryButtons() {
                     city = data.name;
                     day.text(city + ' ' + date).addClass('current');
                     dayForecast.append(data.weather[0].description);
-                    console.log(data);
                     let lon = data.coord.lon;
                     let lat = data.coord.lat;
                     fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`)
@@ -86,6 +85,17 @@ async function weatherData() {
             return response.json();
         })
         .then(data => {
+            city = city.toLowerCase();
+            city = city.charAt(0).toUpperCase() + city.slice(1);
+            if (city === '') {
+                return
+            }
+            if (history.includes(city) === false) {
+                history.push(city);
+                localStorage.setItem('history', JSON.stringify(history));
+            };
+            historyEl.text(history);
+            makeHistoryButtons();
             weekForecast.empty();
             city = data.name;
             day.text(city + ' ' + date).addClass('current');
