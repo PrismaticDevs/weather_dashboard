@@ -50,8 +50,8 @@ function makeHistoryButtons() {
             console.log(history);
         });
         cityButton.click(function(e) {
-            dayForecast.empty();
-            weekForecast.empty();
+            dayForecast.text('');
+            weekForecast.text('');
             let city = cityButton.text();
             let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
             fetch(url)
@@ -59,7 +59,6 @@ function makeHistoryButtons() {
                     return response.json();
                 })
                 .then(data => {
-                    weekForecast.empty();
                     city = data.name;
                     day.text(city + ' ' + date).addClass('current');
                     dayForecast.append(data.weather[0].description);
@@ -85,6 +84,8 @@ makeHistoryButtons();
 
 // // Fetch Async Await
 async function weatherData() {
+    dayForecast.text('');
+    weekForecast.text('');
     city = cityElement.val();
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
     fetch(url)
