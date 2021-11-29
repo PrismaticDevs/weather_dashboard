@@ -33,16 +33,6 @@ form {
     justify-content: center;
 }
 
-table {
-    border-collapse: separate;
-    border-spacing: 1em 1em;
-}
-
-td {
-    vertical-align: top;
-    border-radius: 5px;
-}
-
 input[type=text] {
     padding: 2%;
     border: solid 1px #c5c5c5;
@@ -79,6 +69,7 @@ input[type=text] {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 1%;
 }
 
 .historyItem {
@@ -92,16 +83,70 @@ input[type=text] {
     width: 100%;
     margin-bottom: 3%;
     background-color: #b7b7b7;
+    font-size: 1em;
 }
 
-.day {
-    width: 75vw;
+.daily {
+    width: 70vw;
     height: 30vh;
     padding: 1%;
     border: 1px solid black;
 }
 
-.current {
+.day {
     font-size: 1.5em;
     font-weight: 600;
+}
+
+.dayForecast {
+    margin-top: 1%;
+}
+
+.weekForecast {
+    margin: 3%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.forecastItem {
+    margin-bottom: 3%;
+}
+
+.search {
+    width: 20vw;
+    padding: 3%;
+    padding-top: 0;
+}
+
+.delete {
+    background-color: crimson;
+    float: right;
+}
+
+.icon {
+    width: 8%;
+}
+
+
+/* Media Queries  */
+
+@media screen and (min-width: 900px) {
+    .search {
+        width: 20vw;
+    }
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .search {
+        width: 70vw;
+        display: flex;
+        justify-content: space-around;
+    }
+    .day {
+        margin: 0 auto;
+    }
 }

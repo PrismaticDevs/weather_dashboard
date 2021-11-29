@@ -4,8 +4,17 @@ const form = $('#form');
 const submitBtn = $('#submit');
 const cityElement = $('#city');
 const day = $('.day');
+const dayForecast = $('.dayForecast');
+const weekForecast = $('.weekForecast');
 const historyEl = $('#historyItems');
 const div = $('<div class="container">');
+// Date
+let d = new Date;
+let month = d.getMonth() + 1;
+let x = d.getDate();
+let year = d.getFullYear();
+let date = '(' + month + '/' + x + '/' + year + ')';
+// History
 let history = getStorage();
 
 function getStorage() {
@@ -32,6 +41,10 @@ function makeHistoryButtons() {
         cityButton.text(city)
         historyEl.append(cityButton);
         cityButton.click(function(e) {
+            cityButton.dblclick(function() {
+                $(this).remove();
+                let itemToRemove = localStorage.getItem('history');
+            });
             let city = cityButton.text();
             let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
             fetch(url)
@@ -39,44 +52,58 @@ function makeHistoryButtons() {
                     return response.json();
                 })
                 .then(data => {
+                    weekForecast.empty();
+                    city = data.name;
+                    day.text(city + ' ' + date).addClass('current');
+                    dayForecast.append(data.weather[0].description);
                     console.log(data);
-                })
-        })
+                    let lon = data.coord.lon;
+                    let lat = data.coord.lat;
+                    fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`)
+                        .then(response => {
+                            return response.json();
+                        })
+                        .then(data => {
+                            for (let i = 0; i < 5; i++) {
+                                let icon = data.list[i].weather[0].icon;
+                                let img = $(`<img class="icon" src="http://openweathermap.org/img/wn/${icon}@2x.png">`);
+                                weekForecast.append(img);
+                            }
+
+                        });
+                });
+        });
     });
 }
 makeHistoryButtons();
 
-// Fetch Async Await
+// // Fetch Async Await
 async function weatherData() {
-    let d = new Date;
-    let month = d.getMonth() + 1;
-    let x = d.getDate();
-    let year = d.getFullYear();
-    let date = '(' + month + '/' + x + '/' + year + ')';
     city = cityElement.val();
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
-    await fetch(url)
+    fetch(url)
         .then(response => {
             return response.json();
         })
         .then(data => {
-            //day.append(data.name);
-            city = city.toLowerCase();
-            city = city.charAt(0).toUpperCase() + city.slice(1);
-            if (city === '') {
-                return
-            }
-            if (history.includes(city) === false) {
-                history.push(city);
-                localStorage.setItem('history', JSON.stringify(history));
-            };
-            results.append();
+            weekForecast.empty();
+            city = data.name;
             day.text(city + ' ' + date).addClass('current');
-            console.log(data);
-            makeHistoryButtons();
-        })
-        .catch((error) => {
-            console.error(error);
+            dayForecast.append(data.weather[0].description);
+            let lon = data.coord.lon;
+            let lat = data.coord.lat;
+            fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`)
+                .then(response => {
+                    return response.json();
+                })
+                .then(data => {
+                    for (let i = 0; i < 5; i++) {
+                        let icon = data.list[i].weather[0].icon;
+                        let img = $(`<img class="icon" src="http://openweathermap.org/img/wn/${icon}@2x.png">`);
+                        weekForecast.append(img);
+                    }
+
+                });
         });
 }
 
