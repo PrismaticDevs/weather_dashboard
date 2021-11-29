@@ -18,11 +18,15 @@ let date = '(' + month + '/' + x + '/' + year + ')';
 let history = getStorage();
 
 function getStorage() {
-    let items = JSON.parse(localStorage.getItem('history'));
-    if (!items) {
-        items = [];
+    try {
+        let items = JSON.parse(localStorage.getItem('history'));
+        if (!items) {
+            items = [];
+        }
+        return items;
+    } catch (error) {
+
     }
-    return items;
 }
 
 historyEl.text(history);
@@ -40,11 +44,14 @@ function makeHistoryButtons() {
         const cityButton = $('<button class="historyBtn">');
         cityButton.text(city)
         historyEl.append(cityButton);
+        cityButton.dblclick(function() {
+            $(this).remove();
+            // localStorage.setItem('history', history);
+            console.log(history);
+        });
         cityButton.click(function(e) {
-            cityButton.dblclick(function() {
-                $(this).remove();
-                let itemToRemove = localStorage.getItem('history');
-            });
+            dayForecast.empty();
+            weekForecast.empty();
             let city = cityButton.text();
             let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
             fetch(url)
