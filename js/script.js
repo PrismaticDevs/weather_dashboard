@@ -105,6 +105,7 @@ async function weatherData() {
 
                 });
         });
+    console.log(history);
 }
 
 form.submit(function(e) {
