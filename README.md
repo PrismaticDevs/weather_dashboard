@@ -18,8 +18,8 @@ Weather dashboard app that fetches data from Openweathermap.org
   <br>JavaScript
   <br>jQuery
 ## Instructions
-1. Choose a city by typing into the input that says "Select a City", or if you have already searched before, click on the button for the city whose weather data you want to see.![Screen Shot 2021-11-29 at 7 46 27 PM](https://user-images.githubusercontent.com/34839284/143978605-169d5ad8-3342-49d5-8319-f2aed7b569a8.png)
-
+1. Choose a city by typing into the input that says "Select a City", or if you have already searched before, click on the button for the city whose weather data you want to see.
+![Screen Shot 2021-11-29 at 7 46 27 PM](https://user-images.githubusercontent.com/34839284/143978605-169d5ad8-3342-49d5-8319-f2aed7b569a8.png)
 2. Click "Search" to see the weather forecast for the city you specified. 
 3. In the center panel you will now see the cureent weather data.
 4. In the dark blue panels you will see the other days of the week's weather data.
