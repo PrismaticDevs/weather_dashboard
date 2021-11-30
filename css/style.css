@@ -136,10 +136,10 @@ p {
 
 .weeklyForecastDay {
     background-color: #33475a;
-    padding: 1%;
+    padding: 3%;
     color: white;
     font-weight: 500;
-    width: fit-content;
+    width: 20%;
     margin-left: 5%;
 }
 
