@@ -156,7 +156,7 @@ p {
     padding-bottom: .25%;
     padding-top: .25%;
     border-radius: 5px;
-    color: white
+    display: inline;
 }
 
 

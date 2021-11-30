@@ -94,6 +94,7 @@ function makeHistoryButtons() {
                             })
                             .then(data => {
                                 uvi = data.current.uvi;
+                                console.log(uvi);
                                 return uvi;
                             })
                         let daydata = $(`<div><p>Temp: ${temp}°</p><p>Wind: ${wind} MPH</p><p>Humidity: ${data.main.humidity}%</p><p class="inline">UV Index: <p id="uvi">${uvi}</p></p></div>`);
