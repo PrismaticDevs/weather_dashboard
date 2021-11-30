@@ -8,8 +8,8 @@ const dayForecast = $('.dayForecast');
 const weekForecast = $('.weekForecast');
 const historyEl = $('#historyItems');
 const div = $('<div class="container">');
-const weeklyForecastDay = $('<div class="weeklyForecastDay">')
-    // Date
+const weeklyForecastDay = $('<div class="weeklyForecastDay">');
+// Date
 let d = new Date;
 let month = d.getMonth() + 1;
 let x = d.getDate();
@@ -85,8 +85,10 @@ function makeHistoryButtons() {
                     let lon = data.coord.lon;
                     let lat = data.coord.lat;
                     let uvi;
-                    async function uvIndex() {
-                        await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`)
+                    let uviId;
+
+                    function uvIndex() {
+                        fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`)
                             .then(response => {
                                 return response.json();
                             })
@@ -94,19 +96,19 @@ function makeHistoryButtons() {
                                 uvi = data.current.uvi;
                                 return uvi;
                             })
-                        let daydata = $(`<div><p>Temp: ${temp}°</p><p>Wind: ${wind} MPH</p><p>Humidity: ${data.main.humidity}%</p><p class="inline">UV Index: <p class="uvi">${uvi}</p></p></div>`);
-                        let uviClass = $('.uvi');
+                        let daydata = $(`<div><p>Temp: ${temp}°</p><p>Wind: ${wind} MPH</p><p>Humidity: ${data.main.humidity}%</p><p class="inline">UV Index: <p id="uvi">${uvi}</p></p></div>`);
+                        uviId = $('#uvi');
                         if (uvi <= 3) {
-                            uviClass.css('background-color', 'green');
+                            uviId.css('background-color', 'green');
                             console.log('green');
                         } else if (uvi <= 5) {
-                            uviClass.css('background-color', 'yellow');
+                            uviId.css('background-color', 'yellow');
                             console.log('yellow');
                         } else if (uvi <= 7) {
-                            uviClass.css('background-color', 'orange');
+                            uviId.css('background-color', 'orange');
                             console.log('orange');
                         } else if (uvi <= 11) {
-                            uviClass.css('background-color', 'magenta');
+                            uviId.css('background-color', 'magenta');
                             console.log('red');
                         }
                         dayForecast.append(daydata);
@@ -173,6 +175,7 @@ async function weatherData() {
             let lon = data.coord.lon;
             let lat = data.coord.lat;
             let uvi;
+            let uviId = $('#uvi');
             async function uvIndex() {
                 await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`)
                     .then(response => {
@@ -183,10 +186,10 @@ async function weatherData() {
                         return uvi;
                     })
                 let daydata = $(`<div><p>Temp: ${temp}°</p><p>Wind: ${wind} MPH</p><p>Humidity: ${data.main.humidity}%</p><p class="inline">UV Index: <p id="uvi">${uvi}</p></p></div>`);
-                let uviId = $('#uvi');
                 if (uvi <= 3) {
-                    uviId.css('background-color', 'green')
-                    console.log('green');
+                    uviId.css('background-color', 'green');
+                    uviId.css('background-color', 'green');
+                    console.log('green', uviId);
                 } else if (uvi <= 5) {
                     uviId.css('background-color', 'yellow');
                     console.log('yellow');

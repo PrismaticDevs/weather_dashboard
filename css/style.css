@@ -140,7 +140,7 @@ p {
     font-weight: 500;
 }
 
-.uvi,
+#uvi,
 .inline {
     display: inline;
     margin-right: 0;
@@ -153,7 +153,8 @@ p {
     padding-bottom: .25%;
     padding-top: .25%;
     border-radius: 5px;
-    color: white
+    color: white;
+    background-color: tan;
 }
 
 
