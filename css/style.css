@@ -39,6 +39,10 @@ input[type=text] {
     border-radius: 5px;
 }
 
+p {
+    margin: 1em;
+}
+
 
 /* Custom IDs */
 
@@ -89,7 +93,9 @@ input[type=text] {
 .daily {
     width: 70vw;
     height: 30vh;
-    padding: 1%;
+    padding: 5%;
+    padding-bottom: 7%;
+    padding-top: 1%;
     border: 1px solid black;
 }
 
@@ -124,7 +130,30 @@ input[type=text] {
 }
 
 .icon {
-    width: 8%;
+    width: 33%;
+}
+
+.weeklyForecastDay {
+    background-color: #33475a;
+    padding: 1%;
+    color: white;
+    font-weight: 500;
+}
+
+.uvi,
+.inline {
+    display: inline;
+    margin-right: 0;
+}
+
+#uvi {
+    margin: 0;
+    padding-left: 1.5%;
+    padding-right: 1.5%;
+    padding-bottom: .25%;
+    padding-top: .25%;
+    border-radius: 5px;
+    color: white
 }
 
 
