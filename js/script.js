@@ -194,7 +194,7 @@ async function weatherData() {
                     uviId.css('background-color', 'orange');
                     console.log('orange');
                 } else if (uvi <= 11) {
-                    uviId.css('background-color', '#6B49C8');
+                    uviId.css('background-color', 'magenta');
                     console.log('red');
                 }
                 dayForecast.append(daydata);
