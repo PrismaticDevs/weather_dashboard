@@ -76,7 +76,6 @@ function makeHistoryButtons() {
                         localStorage.setItem('history', JSON.stringify(history));
                     };
                     historyEl.text(history);
-                    makeHistoryButtons();
                     weekForecast.empty();
                     city = data.name;
                     day.text(city + ' ' + date).addClass('current');
@@ -111,6 +110,7 @@ function makeHistoryButtons() {
                             console.log('red');
                         }
                         dayForecast.append(daydata);
+                        makeHistoryButtons();
                     }
                     uvIndex();
                     fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`)
