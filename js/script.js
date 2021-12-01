@@ -54,7 +54,8 @@ function makeHistoryButtons() {
         //     console.log(history, 'history after');
         //     console.log(newArray, 'new array');
         //     console.log(index, 'index');
-        //     localStorage.setItem('history', history);
+        //     localStorage.removeItem('history');
+
         // });
         cityButton.click(function(e) {
             dayForecast.text('');
@@ -88,7 +89,6 @@ function makeHistoryButtons() {
                                 return response.json();
                             })
                             .then(data => {
-                                console.log(data.list[0].weather[0].icon);
                                 iconPic = data.list[0].weather[0].icon;
                                 return iconPic
                             });
@@ -196,7 +196,6 @@ async function weatherData() {
                         return response.json();
                     })
                     .then(data => {
-                        console.log(data.list[0].weather[0].icon);
                         iconPic = data.list[0].weather[0].icon;
                         return iconPic
                     });
