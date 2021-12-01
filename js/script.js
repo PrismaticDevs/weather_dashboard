@@ -81,18 +81,24 @@ function makeHistoryButtons() {
                     day.text(city + ' ' + date).addClass('current');
                     let lon = data.coord.lon;
                     let lat = data.coord.lat;
+                    let iconPic;
+                    async function getIconPic() {
+                        await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`)
+                            .then(response => {
+                                return response.json();
+                            })
+                            .then(data => {
+                                console.log(data.list[0].weather[0].icon);
+                                iconPic = data.list[0].weather[0].icon;
+                                return iconPic
+                            });
+                        let iconUrl = `http://openweathermap.org/img/wn/${iconPic}@2x.png`;
+                        let iconImg = $(`<img class="ico" src="${iconUrl}">`);
+                        day.text(city + ' ' + date).addClass('current');
+                        day.append(iconImg);
 
-                    fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`)
-                        .then(response => {
-                            return response.json();
-                        })
-                        .then(data => {
-                            console.log(data.list[0].weather[0].icon);
-                        });
-                    let iconUrl = `http://openweathermap.org/img/wn/10d@2x.png`;
-                    let iconImg = $(`<img class="ico" src="${iconUrl}">`);
-                    day.text(city + ' ' + date).addClass('current');
-                    day.append(iconImg);
+                    }
+                    getIconPic();
 
                     let temp = (((data.main.temp) + 9) / 5).toFixed(1);
                     let wind = (data.wind.speed * 2.2).toFixed(1);
@@ -184,17 +190,23 @@ async function weatherData() {
             let lon = data.coord.lon;
             let lat = data.coord.lat;
             let uvi;
-            fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`)
-                .then(response => {
-                    return response.json();
-                })
-                .then(data => {
-                    console.log(data.list[0].weather[0].icon);
-                });
-            let iconUrl = `http://openweathermap.org/img/wn/10d@2x.png`;
-            let iconImg = $(`<img class="ico" src="${iconUrl}">`);
-            day.text(city + ' ' + date).addClass('current');
-            day.append(iconImg);
+            async function getIconPic() {
+                await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`)
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log(data.list[0].weather[0].icon);
+                        iconPic = data.list[0].weather[0].icon;
+                        return iconPic
+                    });
+                let iconUrl = `http://openweathermap.org/img/wn/${iconPic}@2x.png`;
+                let iconImg = $(`<img class="ico" src="${iconUrl}">`);
+                day.text(city + ' ' + date).addClass('current');
+                day.append(iconImg);
+
+            }
+            getIconPic();
             let temp = (((data.main.temp) + 9) / 5).toFixed(1);
             let wind = (data.wind.speed * 2.2).toFixed(1);
             async function uvIndex() {
