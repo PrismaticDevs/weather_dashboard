@@ -85,8 +85,8 @@ function makeHistoryButtons() {
                     let lat = data.coord.lat;
                     let uvi;
 
-                    function uvIndex() {
-                        fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`)
+                    async function uvIndex() {
+                        await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`)
                             .then(response => {
                                 return response.json();
                             })
@@ -95,21 +95,22 @@ function makeHistoryButtons() {
                                 console.log(uvi);
                                 return uvi;
                             })
-                        let daydata = $(`<div><p>Temp: ${temp}°</p><p>Wind: ${wind} MPH</p><p>Humidity: ${data.main.humidity}%</p><p class="inline">UV Index: <p id="uvIndex">${uvi}</p></p></div>`);
+                        let tempEl = $(`<div class="dayData">Temp: ${temp}°</div>`);
+                        let windEl = $(`<div class="dayData">Wind: ${wind}</div>`);
+                        let humidityEl = $(`<div class="dayData">Humidity: ${data.main.humidity}</div>`);
+                        let uviEl = $(`<div class="inline uvi">${uvi}</div>`);
                         if (uvi <= 3) {
-                            // taco.css('background-color', 'green');
-                            console.log('green');
+                            uviEl.css('background-color', 'green');
                         } else if (uvi <= 5) {
-                            // taco.css('background-color', 'yellow');
-                            console.log('yellow');
+                            uviEl.css('background-color', 'yellow');
                         } else if (uvi <= 7) {
-                            // taco.css('background-color', 'orange');
-                            console.log('orange');
+                            uviEl.css('background-color', 'orange');
+                        } else if (uvi <= 8) {
+                            uviEl.css('background-color', 'red');
                         } else if (uvi <= 11) {
-                            // taco.css('background-color', 'magenta');
-                            console.log('red');
+                            uviEl.css('background-color', 'magenta');
                         }
-                        dayForecast.append(daydata);
+                        dayForecast.append(tempEl).append(windEl).append(humidityEl).append('UV Index: ', uviEl);
                         makeHistoryButtons();
                     }
                     uvIndex();
@@ -180,23 +181,22 @@ async function weatherData() {
                         uvi = data.current.uvi;
                         return uvi;
                     })
-                let daydata = $(`<div><p>Temp: ${temp}°</p><p>Wind: ${wind} MPH</p><p>Humidity: ${data.main.humidity}%</p><p class="inline">UV Index: <p id="uvIndex">${uvi}</p></p></div>`);
-                let uvEl = $('#uvIndex');
-                uvEl.css('color', 'green');
+                let tempEl = $(`<div class="dayData">Temp: ${temp}°</div>`);
+                let windEl = $(`<div class="dayData">Wind: ${wind}</div>`);
+                let humidityEl = $(`<div class="dayData">Humidity: ${data.main.humidity}</div>`);
+                let uviEl = $(`<div class="inline uvi">${uvi}</div>`);
                 if (uvi <= 3) {
-                    // $('#uvIndex').css('background-color', 'green');
-                    console.log('green');
+                    uviEl.css('background-color', 'green');
                 } else if (uvi <= 5) {
-                    // taco.css('background-color', 'yellow');
-                    console.log('yellow');
+                    uviEl.css('background-color', 'yellow');
                 } else if (uvi <= 7) {
-                    // taco.css('background-color', 'orange');
-                    console.log('orange');
+                    uviEl.css('background-color', 'orange');
+                } else if (uvi <= 8) {
+                    uviEl.css('background-color', 'red');
                 } else if (uvi <= 11) {
-                    // taco.css('background-color', 'magenta');
-                    console.log('red');
+                    uviEl.css('background-color', 'magenta');
                 }
-                dayForecast.append(daydata);
+                dayForecast.append(tempEl).append(windEl).append(humidityEl).append('UV Index: ', uviEl);
             }
             uvIndex();
             fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`)

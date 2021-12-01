@@ -149,14 +149,19 @@ p {
     margin-right: 0;
 }
 
-#uvIndex {
+.dayData {
+    margin-bottom: 2%;
+}
+
+.uvi {
     margin: 0;
-    padding-left: 1.5%;
-    padding-right: 1.5%;
-    padding-bottom: .25%;
-    padding-top: .25%;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: .5%;
+    padding-top: .5%;
     border-radius: 5px;
     display: inline;
+    color: white;
 }
 
 
