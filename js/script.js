@@ -136,7 +136,7 @@ function makeHistoryButtons() {
                         .then(data => {
                             let d = new Date;
                             let m = d.getMonth() + 1;
-                            let day = d.getDate();
+                            let day = d.getDate() + 1;
                             let y = d.getFullYear();
                             for (let i = 0; i < 5; i++) {
                                 if (day >= 30) {
@@ -237,7 +237,7 @@ async function weatherData() {
                     if (m >= 13) {
                         m = 0;
                     }
-                    let day = d.getDate();
+                    let day = d.getDate() + 1;
                     let y = d.getFullYear();
                     for (let i = 0; i < 5; i++) {
                         if (day >= 30) {
