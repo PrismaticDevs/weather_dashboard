@@ -108,7 +108,7 @@ function makeHistoryButtons() {
                                 return uvi;
                             })
                         let tempEl = $(`<div class="dayData">Temp: ${temp}°</div>`);
-                        let windEl = $(`<div class="dayData">Wind: ${wind}</div>`);
+                        let windEl = $(`<div class="dayData">Wind: ${wind} MPH</div>`);
                         let humidityEl = $(`<div class="dayData">Humidity: ${data.main.humidity}</div>`);
                         let uviEl = $(`<div class="inline uvi">${uvi}</div>`);
                         if (uvi <= 3) {
@@ -207,7 +207,7 @@ async function weatherData() {
                         return uvi;
                     })
                 let tempEl = $(`<div class="dayData">Temp: ${temp}°</div>`);
-                let windEl = $(`<div class="dayData">Wind: ${wind}</div>`);
+                let windEl = $(`<div class="dayData">Wind: ${wind} MPH</div>`);
                 let humidityEl = $(`<div class="dayData">Humidity: ${data.main.humidity}</div>`);
                 let uviEl = $(`<div class="inline uvi">${uvi}</div>`);
                 if (uvi <= 3) {
