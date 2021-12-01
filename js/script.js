@@ -79,10 +79,23 @@ function makeHistoryButtons() {
                     weekForecast.empty();
                     city = data.name;
                     day.text(city + ' ' + date).addClass('current');
-                    let temp = (data.main.temp / 1609.344).toFixed(1);
-                    let wind = (data.wind.speed * 2.2).toFixed(1);
                     let lon = data.coord.lon;
                     let lat = data.coord.lat;
+
+                    fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`)
+                        .then(response => {
+                            return response.json();
+                        })
+                        .then(data => {
+                            console.log(data.list[0].weather[0].icon);
+                        });
+                    let iconUrl = `http://openweathermap.org/img/wn/10d@2x.png`;
+                    let iconImg = $(`<img class="ico" src="${iconUrl}">`);
+                    day.text(city + ' ' + date).addClass('current');
+                    day.append(iconImg);
+
+                    let temp = (((data.main.temp) + 9) / 5).toFixed(1);
+                    let wind = (data.wind.speed * 2.2).toFixed(1);
                     let uvi;
 
                     async function uvIndex() {
@@ -92,7 +105,6 @@ function makeHistoryButtons() {
                             })
                             .then(data => {
                                 uvi = data.current.uvi;
-                                console.log(uvi);
                                 return uvi;
                             })
                         let tempEl = $(`<div class="dayData">Temp: ${temp}°</div>`);
@@ -102,7 +114,10 @@ function makeHistoryButtons() {
                         if (uvi <= 3) {
                             uviEl.css('background-color', 'green');
                         } else if (uvi <= 5) {
-                            uviEl.css('background-color', 'yellow');
+                            uviEl.css({
+                                'background-color': 'yellow',
+                                'color': 'black'
+                            });
                         } else if (uvi <= 7) {
                             uviEl.css('background-color', 'orange');
                         } else if (uvi <= 8) {
@@ -166,12 +181,22 @@ async function weatherData() {
             makeHistoryButtons();
             weekForecast.empty();
             city = data.name;
-            day.text(city + ' ' + date).addClass('current');
-            let temp = (data.main.temp / 1609.344).toFixed(1);
-            let wind = (data.wind.speed * 2.2).toFixed(1);
             let lon = data.coord.lon;
             let lat = data.coord.lat;
             let uvi;
+            fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`)
+                .then(response => {
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data.list[0].weather[0].icon);
+                });
+            let iconUrl = `http://openweathermap.org/img/wn/10d@2x.png`;
+            let iconImg = $(`<img class="ico" src="${iconUrl}">`);
+            day.text(city + ' ' + date).addClass('current');
+            day.append(iconImg);
+            let temp = (((data.main.temp) + 9) / 5).toFixed(1);
+            let wind = (data.wind.speed * 2.2).toFixed(1);
             async function uvIndex() {
                 await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`)
                     .then(response => {
@@ -188,7 +213,10 @@ async function weatherData() {
                 if (uvi <= 3) {
                     uviEl.css('background-color', 'green');
                 } else if (uvi <= 5) {
-                    uviEl.css('background-color', 'yellow');
+                    uviEl.css({
+                        'background-color': 'yellow',
+                        'color': 'black'
+                    });
                 } else if (uvi <= 7) {
                     uviEl.css('background-color', 'orange');
                 } else if (uvi <= 8) {

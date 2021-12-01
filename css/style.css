@@ -168,6 +168,11 @@ p {
     color: white;
 }
 
+.ico {
+    position: absolute;
+    margin-top: -1em;
+}
+
 
 /* Media Queries  */
 
