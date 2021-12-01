@@ -9,6 +9,7 @@ const weekForecast = $('.weekForecast');
 const historyEl = $('#historyItems');
 const div = $('<div class="container">');
 const weeklyForecastDay = $('<div class="weeklyForecastDay">');
+
 // Date
 let d = new Date;
 let month = d.getMonth() + 1;
@@ -79,13 +80,11 @@ function makeHistoryButtons() {
                     weekForecast.empty();
                     city = data.name;
                     day.text(city + ' ' + date).addClass('current');
-                    console.log(data);
                     let temp = (data.main.temp / 1609.344).toFixed(1);
                     let wind = (data.wind.speed * 2.2).toFixed(1);
                     let lon = data.coord.lon;
                     let lat = data.coord.lat;
                     let uvi;
-                    let uviId;
 
                     function uvIndex() {
                         fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`)
@@ -97,19 +96,18 @@ function makeHistoryButtons() {
                                 console.log(uvi);
                                 return uvi;
                             })
-                        let daydata = $(`<div><p>Temp: ${temp}°</p><p>Wind: ${wind} MPH</p><p>Humidity: ${data.main.humidity}%</p><p class="inline">UV Index: <p id="uvi">${uvi}</p></p></div>`);
-                        uviId = $('#uvi');
+                        let daydata = $(`<div><p>Temp: ${temp}°</p><p>Wind: ${wind} MPH</p><p>Humidity: ${data.main.humidity}%</p><p class="inline">UV Index: <p id="uvIndex">${uvi}</p></p></div>`);
                         if (uvi <= 3) {
-                            uviId.css('background-color', 'green');
+                            // taco.css('background-color', 'green');
                             console.log('green');
                         } else if (uvi <= 5) {
-                            uviId.css('background-color', 'yellow');
+                            // taco.css('background-color', 'yellow');
                             console.log('yellow');
                         } else if (uvi <= 7) {
-                            uviId.css('background-color', 'orange');
+                            // taco.css('background-color', 'orange');
                             console.log('orange');
                         } else if (uvi <= 11) {
-                            uviId.css('background-color', 'magenta');
+                            // taco.css('background-color', 'magenta');
                             console.log('red');
                         }
                         dayForecast.append(daydata);
@@ -120,7 +118,6 @@ function makeHistoryButtons() {
                             return response.json();
                         })
                         .then(data => {
-                            console.log(data);
                             let d = new Date;
                             let m = d.getMonth();
                             let day = d.getDate();
@@ -144,7 +141,6 @@ function makeHistoryButtons() {
     });
 }
 makeHistoryButtons();
-
 // // Fetch Async Await
 async function weatherData() {
     dayForecast.text('');
@@ -170,13 +166,11 @@ async function weatherData() {
             weekForecast.empty();
             city = data.name;
             day.text(city + ' ' + date).addClass('current');
-            console.log(data);
             let temp = (data.main.temp / 1609.344).toFixed(1);
             let wind = (data.wind.speed * 2.2).toFixed(1);
             let lon = data.coord.lon;
             let lat = data.coord.lat;
             let uvi;
-            let uviId = $('#uvi');
             async function uvIndex() {
                 await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`)
                     .then(response => {
@@ -186,19 +180,20 @@ async function weatherData() {
                         uvi = data.current.uvi;
                         return uvi;
                     })
-                let daydata = $(`<div><p>Temp: ${temp}°</p><p>Wind: ${wind} MPH</p><p>Humidity: ${data.main.humidity}%</p><p class="inline">UV Index: <p id="uvi">${uvi}</p></p></div>`);
+                let daydata = $(`<div><p>Temp: ${temp}°</p><p>Wind: ${wind} MPH</p><p>Humidity: ${data.main.humidity}%</p><p class="inline">UV Index: <p id="uvIndex">${uvi}</p></p></div>`);
+                let uvEl = $('#uvIndex');
+                uvEl.css('color', 'green');
                 if (uvi <= 3) {
-                    uviId.css('background-color', 'green');
-                    uviId.css('background-color', 'green');
-                    console.log('green', uviId);
+                    // $('#uvIndex').css('background-color', 'green');
+                    console.log('green');
                 } else if (uvi <= 5) {
-                    uviId.css('background-color', 'yellow');
+                    // taco.css('background-color', 'yellow');
                     console.log('yellow');
                 } else if (uvi <= 7) {
-                    uviId.css('background-color', 'orange');
+                    // taco.css('background-color', 'orange');
                     console.log('orange');
                 } else if (uvi <= 11) {
-                    uviId.css('background-color', 'magenta');
+                    // taco.css('background-color', 'magenta');
                     console.log('red');
                 }
                 dayForecast.append(daydata);
@@ -209,7 +204,6 @@ async function weatherData() {
                     return response.json();
                 })
                 .then(data => {
-                    console.log(data);
                     let d = new Date;
                     let m = d.getMonth() + 1;
                     if (m >= 13) {
