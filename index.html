@@ -1,3 +1,4 @@
+<!-- Index HTML File -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,9 +17,11 @@
 </head>
 
 <body>
+    <!-- Banner -->
     <div class="banner">
         Weather Dashboard
     </div>
+    <!-- Main container -->
     <div class="container">
         <div class="search">
             <form id="form">
@@ -26,10 +29,12 @@
                 <input type="text" name="city" id="city" placeholder="Select a City"> <br>
                 <button class="submit" id="submit">Search</button>
             </form>
+            <!-- Display for history buttons -->
             <div id="history">
                 <div id="historyItems"></div>
             </div>
         </div>
+        <!-- Display for API data -->
         <div class="results">
             <div class="daily">
                 <div class="day">
@@ -41,7 +46,9 @@
             <div class="weekForecast"></div>
         </div>
     </div>
+    <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!-- Custom CSS -->
     <script src="./js/script.js"></script>
 </body>
 
